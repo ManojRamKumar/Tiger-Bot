@@ -1,0 +1,71 @@
+#include<SoftwareSerial.h>
+SoftwareSerial BTSerial(10,11);
+#define FM1 2
+#define FM2 3
+#define BM1 4
+#define BM2 5
+#define LM1 6 
+#define LM2 7
+#define RM1 8
+#define RM2 9
+char c;
+void setup()
+{
+  Serial.begin(9600);
+  BTSerial.begin(9600);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  Serial.begin(9600);
+} 
+void loop()
+{
+  c = BTSerial.read();
+  if (c=="f")
+  {
+    digitalWrite(6,HIGH);
+    digitalWrite(7,LOW);
+    digitalWrite(6,HIGH);
+    digitalWrite(9,LOW);
+  }
+  if (c=="b")
+  {
+    digitalWrite(6,LOW);
+    digitalWrite(7,HIGH);
+    digitalWrite(8,LOW);
+    digitalWrite(9,HIGH);
+  }
+  if (c=="r") 
+  {
+    digitalWrite(6,HIGH);
+    digitalWrite(7,LOW);
+    digitalWrite(8,LOW);
+    digitalWrite(9,LOW);
+  }
+  if (c=="l")
+  {
+    digitalWrite(6,LOW);
+    digitalWrite(7,LOW);
+    digitalWrite(8,HIGH);
+    digitalWrite(9,LOW);
+  }
+  if (c=="up")
+  {
+    digitalWrite(2,HIGH);
+    digitalWrite(3,LOW);
+    digitalWrite(4,HIGH);
+    digitalWrite(5,LOW);
+  }
+  if (c=="down")
+  {
+    digitalWrite(2,LOW);
+    digitalWrite(3,HIGH);
+    digitalWrite(4,LOW);
+    digitalWrite(5,HIGH);
+  }
+}
